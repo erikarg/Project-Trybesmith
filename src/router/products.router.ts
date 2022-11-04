@@ -10,4 +10,9 @@ productsRouter.post(
   productsController.registerNewProduct,
 );
 
+productsRouter.get(
+  '/',
+  productsController.listAllProducts,
+);
+
 export default productsRouter;
