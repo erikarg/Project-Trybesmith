@@ -1,5 +1,5 @@
-import connection from '../database/models/connection';
-import UsersModel from '../database/models/users.model';
+import connection from '../models/connection';
+import UsersModel from '../models/users.model';
 import { User } from '../interfaces/index';
 
 export default class UsersService {

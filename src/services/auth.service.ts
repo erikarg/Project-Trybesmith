@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import * as jwt from 'jsonwebtoken';
-import connection from '../database/models/connection';
-import LoginModel from '../database/models/login.model';
+import connection from '../models/connection';
+import LoginModel from '../models/login.model';
 import { User } from '../interfaces/index';
 
 export default class AuthService {

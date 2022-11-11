@@ -1,6 +1,6 @@
 import { Pool } from 'mysql2/promise';
 import { RowDataPacket } from 'mysql2';
-import { User } from '../../interfaces/index';
+import { User } from '../interfaces/index';
 
 export default class LoginModel {
   public connection: Pool;
