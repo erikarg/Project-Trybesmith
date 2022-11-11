@@ -1,18 +1,13 @@
 import express from 'express';
 import UsersController from '../controllers/users.controller';
 
-const usersRouter = express.Router();
+const usersRoute = express.Router();
 
 const usersController = new UsersController();
 
-usersRouter.post(
+usersRoute.post(
   '/',
   usersController.registerNewUser,
 );
 
-// usersRouter.get(
-//   '/',
-//   usersController.listAllUsers,
-// );
-
-export default usersRouter;
+export default usersRoute;

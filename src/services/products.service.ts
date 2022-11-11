@@ -1,8 +1,8 @@
-import connection from '../models/connection';
-import ProductsModel from '../models/products.model';
-import Product from '../interfaces/products.interface';
+import connection from '../database/models/connection';
+import ProductsModel from '../database/models/products.model';
+import { Product } from '../interfaces/index';
 
-class ProductsService {
+export default class ProductsService {
   public model: ProductsModel;
 
   constructor() {
@@ -19,5 +19,3 @@ class ProductsService {
     return allProducts;
   }
 }
-
-export default ProductsService;

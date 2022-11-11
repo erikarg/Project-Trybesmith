@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import statusCode from '../helpers/statusCode';
 import ProductsService from '../services/products.service';
 
-class ProductsController {
+export default class ProductsController {
   constructor(private productsService = new ProductsService()) { }
 
   public registerNewProduct = async (req: Request, res: Response) => {
@@ -17,5 +17,3 @@ class ProductsController {
     res.status(statusCode.OK).json(products);
   };
 }
-
-export default ProductsController;

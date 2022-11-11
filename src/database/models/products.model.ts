@@ -1,7 +1,7 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import Product from '../interfaces/products.interface';
+import { Product } from '../../interfaces/index';
 
-class ProductsModel {
+export default class ProductsModel {
   public connection: Pool;
 
   constructor(connection: Pool) {
@@ -25,5 +25,3 @@ class ProductsModel {
     return rows as Product;
   }
 }
-
-export default ProductsModel;

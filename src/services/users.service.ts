@@ -1,8 +1,8 @@
-import connection from '../models/connection';
-import UsersModel from '../models/users.model';
-import User from '../interfaces/users.interface';
+import connection from '../database/models/connection';
+import UsersModel from '../database/models/users.model';
+import { User } from '../interfaces/index';
 
-class UsersService {
+export default class UsersService {
   public model: UsersModel;
 
   constructor() {
@@ -13,11 +13,4 @@ class UsersService {
     const userData = await this.model.insertNewUser(user);
     return userData;
   }
-
-  // public async allUsers(): Promise<User> {
-  //   const all = await this.model.getAllUsers();
-  //   return all;
-  // }
 }
-
-export default UsersService;

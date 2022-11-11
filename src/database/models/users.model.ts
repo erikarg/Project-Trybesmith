@@ -1,7 +1,7 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import User from '../interfaces/users.interface';
+import { User } from '../../interfaces/index';
 
-class UsersModel {
+export default class UsersModel {
   public connection: Pool;
 
   constructor(connection: Pool) {
@@ -16,12 +16,4 @@ class UsersModel {
     );
     return { id: insertId, username, classe, level, password };
   }
-
-  // public async getAllUsers(): Promise<User> {
-  //   const list = await this.connection.execute('SELECT * FROM Trybesmith.Users');
-  //   const [rows] = list;
-  //   return rows as User;
-  // }
 }
-
-export default UsersModel;
