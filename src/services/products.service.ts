@@ -1,6 +1,6 @@
 import connection from '../models/connection';
 import ProductsModel from '../models/products.model';
-import { Product } from '../interfaces/index';
+import { IProduct } from '../interfaces/index';
 
 export default class ProductsService {
   public model: ProductsModel;
@@ -9,12 +9,12 @@ export default class ProductsService {
     this.model = new ProductsModel(connection);
   }
 
-  public async insertNewProduct(product: Product): Promise<Product> {
+  public async insertNewProduct(product: IProduct): Promise<IProduct> {
     const products = await this.model.insertNewProduct(product);
     return products;
   }
 
-  public async allProducts(): Promise<Product> {
+  public async allProducts(): Promise<IProduct> {
     const allProducts = await this.model.getAllProducts();
     return allProducts;
   }

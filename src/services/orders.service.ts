@@ -1,6 +1,6 @@
 import connection from '../models/connection';
 import OrdersModel from '../models/orders.model';
-import { Order } from '../interfaces/index';
+import { IOrder } from '../interfaces/index';
 
 export default class OrdersService {
   public model: OrdersModel;
@@ -9,7 +9,7 @@ export default class OrdersService {
     this.model = new OrdersModel(connection);
   }
 
-  public async allOrders(): Promise<Order> {
+  public async allOrders(): Promise<IOrder> {
     const allOrders = await this.model.getAllOrders();
     return allOrders;
   }

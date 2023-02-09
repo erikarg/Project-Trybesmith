@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
   id?: number;
   username: string;
   classe?: string;
@@ -6,13 +6,13 @@ export interface User {
   password: string;
 }
 
-export interface Product {
+export interface IProduct {
   id?: number;
   name?: string;
   amount?: string;
 }
 
-export interface Order {
+export interface IOrder {
   id?: number;
   userID?: number;
   productsIds?: Array<number>;

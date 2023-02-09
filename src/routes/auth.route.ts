@@ -8,9 +8,6 @@ const authController = new AuthController();
 
 authRoute.use(authMiddleware);
 
-authRoute.post(
-  '/',
-  authController.userLogin,
-);
+authRoute.post('/', authController.userLogin);
 
 export default authRoute;

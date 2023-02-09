@@ -1,6 +1,6 @@
 import { Pool } from 'mysql2/promise';
 import { RowDataPacket } from 'mysql2';
-import { User } from '../interfaces/index';
+import { IUser } from '../interfaces/index';
 
 export default class LoginModel {
   public connection: Pool;
@@ -9,10 +9,11 @@ export default class LoginModel {
     this.connection = connection;
   }
 
-  async validateLogin(username: string, password: string): Promise<User> {
-    const query = 'SELECT * FROM Trybesmith.Users WHERE username=? AND password=?';
-    const [[user]] = await this.connection.execute<
-    [] & RowDataPacket[]>(query, [username, password]);
+  async validateLogin(username: string, password: string): Promise<IUser> {
+    const [[user]] = await this.connection.execute<[] & RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.Users WHERE username=? AND password=?',
+      [username, password],
+    );
     return user;
   }
 }

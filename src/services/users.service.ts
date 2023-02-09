@@ -1,6 +1,6 @@
 import connection from '../models/connection';
 import UsersModel from '../models/users.model';
-import { User } from '../interfaces/index';
+import { IUser } from '../interfaces/index';
 
 export default class UsersService {
   public model: UsersModel;
@@ -9,7 +9,7 @@ export default class UsersService {
     this.model = new UsersModel(connection);
   }
 
-  public async insertNewUser(user: User): Promise<User> {
+  public async insertNewUser(user: IUser): Promise<IUser> {
     const userData = await this.model.insertNewUser(user);
     return userData;
   }

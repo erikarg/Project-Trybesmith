@@ -1,17 +1,21 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import statusCode from '../helpers/statusCode';
-import errorMessage from '../helpers/errorMessage';
 import AuthService from '../services/auth.service';
 
 export default class AuthController {
-  constructor(private authService = new AuthService()) { }
+  constructor(private authService = new AuthService()) {}
 
-  public userLogin = async (req: Request, res: Response) => {
-    const result = await this.authService.validateData(req.body);
-    if (result === undefined) {
-      return res.status(statusCode.Unauthorized).json({ message: errorMessage.invalidUsername });
+  public userLogin = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const result = await this.authService.validateData(req.body);
+      const token = await this.authService.createToken(result);
+      res.status(statusCode.OK).json({ token });
+    } catch (err) {
+      next(err);
     }
-    const token = await this.authService.createToken(result);
-    res.status(statusCode.OK).json({ token }); 
   };
 }
