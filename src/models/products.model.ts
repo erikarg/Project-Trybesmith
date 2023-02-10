@@ -27,11 +27,10 @@ export default class ProductsModel {
     return rows as IProduct;
   }
 
-  public async update(productId: number, orderId: number): Promise<number> {
-    const [{ affectedRows }] = await this.connection.execute<ResultSetHeader>(
+  async update(id: number, orderId: number): Promise<void> {
+    await this.connection.execute(
       'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
-      [orderId, productId],
+      [orderId, id],
     );
-    return affectedRows;
   }
 }

@@ -8,21 +8,24 @@ dotenv.config();
 
 const secret = process.env.JWT_SECRET || 'bngu7reg7ew7fhewuifbsui';
 
-const authToken = (req: Request, res: Response, next: NextFunction) => {
+const authToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void | Response> => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res
       .status(StatusCode.Unauthorized)
       .json({ message: ErrorMessage.tokenNotFound });
   }
-  const checkToken = jwt.verify(authorization, secret);
-  console.log('Check token', checkToken);
-  if (!checkToken || checkToken === undefined) {
-    return res
-      .status(StatusCode.Unauthorized)
-      .json({ message: ErrorMessage.invalidToken });
+  try {
+    const checkToken = jwt.verify(authorization as string, secret as string);
+    req.body.user = checkToken;
+    next();
+  } catch (error) {
+    return res.status(StatusCode.Unauthorized).json({ message: ErrorMessage.invalidToken });
   }
-  next();
 };
 
 export default authToken;

@@ -1,6 +1,3 @@
-import { Request } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
-
 export interface IUser {
   id?: number;
   username: string;
@@ -8,19 +5,23 @@ export interface IUser {
   level?: number;
   password: string;
 }
-
 export interface IProduct {
   id?: number;
   name?: string;
   amount?: string;
 }
-
 export interface IOrder {
   id?: number;
   userId?: number;
   productsIds?: Array<number>;
 }
+export interface IResponse {
+  status: number;
+  message: any;
+}
 
-export interface CustomRequest extends Request {
-  user?: JwtPayload,
+export interface IToken {
+  id?: number,
+  type?: string,
+  message?: string,
 }

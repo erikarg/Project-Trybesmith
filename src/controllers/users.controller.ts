@@ -1,10 +1,8 @@
-import * as jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import statusCode from '../helpers/statusCode';
 import UsersService from '../services/users.service';
 import { IUser } from '../interfaces';
-
-const secret = process.env.JWT_SECRET || 'bngu7reg7ew7fhewuifbsui';
+import { createToken } from '../utils/manageToken';
 
 export default class UsersController {
   constructor(private usersService = new UsersService()) {}
@@ -22,8 +20,8 @@ export default class UsersController {
         level,
         password,
       });
-      const tokenData = jwt.sign({ result }, secret);
-      res.status(statusCode.Created).json({ token: tokenData });
+      const token = createToken(result.id);
+      res.status(statusCode.Created).json({ token });
     } catch (err) {
       next(err);
     }

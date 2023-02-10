@@ -1,4 +1,4 @@
-import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { IOrder } from '../interfaces/index';
 
 export default class OrdersModel {
@@ -17,14 +17,25 @@ export default class OrdersModel {
     return rows as IOrder;
   }
 
-  public async create(order: IOrder): Promise<IOrder> {
-    const { userId, productsIds } = order;
-    console.log('PRODUCTS', productsIds);
+  public async findById(orderId: number): Promise<IOrder> {
+    const [[command]] = await this.connection.execute<(
+    IOrder & RowDataPacket)[]
+    >(
+      `SELECT o.userId, json_arrayagg(p.id) AS productsIds FROM Trybesmith.Orders AS o
+      INNER JOIN Trybesmith.Products as p
+        ON o.id = p.orderId
+      WHERE o.id = ?
+      GROUP BY o.id`,
+      [orderId],
+      );
+    return command;
+  }
+
+  create = async (userId: number) => {
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
+      'INSERT INTO Trybesmith.Orders (userId) VALUE (?)',
       [userId],
     );
-    console.log('insert id', insertId);
-    return { userId: insertId, ...order };
-  }
+    return insertId as number;
+  };
 }

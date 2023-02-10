@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import statusCode from '../helpers/statusCode';
 import OrdersService from '../services/orders.service';
-import { CustomRequest } from '../interfaces';
+import { decodeToken } from '../utils/manageToken';
 
 export default class OrdersController {
   constructor(private ordersService = new OrdersService()) {}
@@ -20,13 +20,13 @@ export default class OrdersController {
   };
 
   public createOrder = async (
-    req: CustomRequest,
+    req: Request,
     res: Response,
-  ): Promise<void> => {
-    const order = req.body;
-    const newOrder = await this.ordersService.createOrder({
-      userId: 1, productsIds: order.productsIds,
-    });
-    res.status(statusCode.Created).json(newOrder);
+  ) => {
+    const { authorization } = req.headers;
+    const { productsIds } = req.body;
+    const { id } = decodeToken(authorization as string);
+    const result = await this.ordersService.createOrder(id as number, productsIds);
+    res.status(statusCode.Created).json(result);
   };
 }
