@@ -5,6 +5,7 @@ const ErrorMessage = {
   missingName: '"name" is required',
   missingAmount: '"amount" is required',
   missingClass: '"classe" is required',
+  missingProductsIds: '"productsIds" is required',
   amountIsNotAString: '"amount" must be a string',
   nameIsNotAString: '"name" must be a string',
   classIsNotAString: '"classe" must be a string',
@@ -19,6 +20,10 @@ const ErrorMessage = {
   invalidPasswordLength: '"password" length must be at least 8 characters long',
   invalidClassLength: '"classe" length must be at least 3 characters long',
   invalidLevel: '"level" must be greater than or equal to 1',
+  tokenNotFound: 'Token not found',
+  invalidToken: 'Invalid token',
+  invalidProductsIdsType: '"productsIds" must be an array',
+  invalidProductsIdsFormat: '"productsIds" must include only numbers',
 };
 
 export default ErrorMessage;

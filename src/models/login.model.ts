@@ -11,7 +11,7 @@ export default class LoginModel {
 
   async validateLogin(username: string, password: string): Promise<IUser> {
     const [[user]] = await this.connection.execute<[] & RowDataPacket[]>(
-      'SELECT * FROM Trybesmith.Users WHERE username=? AND password=?',
+      'SELECT * FROM Trybesmith.Users WHERE username = ? AND password = ?',
       [username, password],
     );
     return user;
