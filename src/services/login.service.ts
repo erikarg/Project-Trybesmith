@@ -3,7 +3,7 @@ import connection from '../models/connection';
 import LoginModel from '../models/login.model';
 import { IUser } from '../interfaces/index';
 
-export default class AuthService {
+export default class LoginService {
   loginModel = new LoginModel(connection);
 
   validateData = async (params: IUser): Promise<IUser> => {
@@ -16,7 +16,9 @@ export default class AuthService {
       params.username,
       params.password,
     );
-    if (result.error) throw result.error;
+    if (result.error) {
+      throw new Error(result.error.details[0].message);
+    }
     return userData;
   };
 }

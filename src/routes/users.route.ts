@@ -1,16 +1,20 @@
 import express from 'express';
-import authMiddleware from '../middlewares/authMiddleware';
 import UsersController from '../controllers/users.controller';
-import validateUsername from '../middlewares/validateUsername';
-import validateClass from '../middlewares/validateClass';
-import validateLevel from '../middlewares/validateLevel';
-import validatePassword from '../middlewares/validatePassword';
+import {
+  authorization,
+  validateUsername,
+  validatePassword,
+} from '../middlewares/validateCredentials';
+import {
+  validateClass,
+  validateLevel,
+} from '../middlewares/validateProperties';
 
 const usersRoute = express.Router();
 
 const usersController = new UsersController();
 
-usersRoute.use(authMiddleware);
+usersRoute.use(authorization);
 
 usersRoute.post(
   '/',

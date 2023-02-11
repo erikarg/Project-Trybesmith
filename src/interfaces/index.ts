@@ -17,11 +17,11 @@ export interface IOrder {
 }
 export interface IResponse {
   status: number;
-  message: any;
+  message: string;
 }
 
 export interface IToken {
-  id?: number,
-  type?: string,
-  message?: string,
+  id?: number;
+  type?: string;
+  message?: string;
 }

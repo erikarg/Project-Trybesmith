@@ -18,10 +18,7 @@ export default class OrdersService {
     return allOrders;
   }
 
-  async createOrder(
-    userId: number,
-    productsIds: number[],
-  ): Promise<IOrder> {
+  async createOrder(userId: number, productsIds: number[]): Promise<IOrder> {
     const result = await this.model.create(userId);
     const insert = await Promise.all(
       productsIds.map(async (productId) => {

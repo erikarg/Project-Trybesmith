@@ -14,10 +14,6 @@ export default class ProductsController {
   ): Promise<void> => {
     try {
       const { name, amount }: IProduct = req.body;
-      // const nameValidator = await this.inputValidator.validateName(name);
-      // const amountValidator = await this.inputValidator.validateAmount(amount);
-      // if (nameValidator) nameValidator;
-      // if (amountValidator) amountValidator;
       const product: IProduct = await this.productsService.insertNewProduct({
         name,
         amount,

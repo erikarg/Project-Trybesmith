@@ -19,14 +19,14 @@ export default class OrdersController {
     }
   };
 
-  public createOrder = async (
-    req: Request,
-    res: Response,
-  ) => {
+  public createOrder = async (req: Request, res: Response) => {
     const { authorization } = req.headers;
     const { productsIds } = req.body;
     const { id } = decodeToken(authorization as string);
-    const result = await this.ordersService.createOrder(id as number, productsIds);
+    const result = await this.ordersService.createOrder(
+      id as number,
+      productsIds,
+    );
     res.status(statusCode.Created).json(result);
   };
 }
