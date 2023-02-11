@@ -15,11 +15,24 @@ Construir uma loja de itens medievais no formato de uma API REST com CRUD.
 ## Stacks utilizadas
 
 * **Back-end:** Express, Node.js
+* **Plataforma:** Docker
 * **Arquitetura:** MSC
 * **Linguagem:** Typescript
 * **Banco de dados:** MySQL
 
 ## Rodando localmente
+
+* Clone o projeto: 
+
+`git clone git@github.com:erikarg/Project-Trybesmith.git`
+
+* Suba os containers:
+
+`docker-compose up -d`
+
+* Execute o terminal do container:
+
+`docker exec -it trybesmith bash`
 
 * Instale as dependências:
 
@@ -73,13 +86,26 @@ Build a medieval item shop in the form of a REST API with CRUD.
 ## Stacks
 
 * **Back-end:** Express, Node.js
+* **Platform:** Docker
 * **Architecture:** MSC
 * **Language:** Typescript
 * **Database:** MySQL
 
 ## Running the application locally
 
-* Installl dependencies: 
+* Clone the project: 
+
+`git clone git@github.com:erikarg/Project-Trybesmith.git`
+
+* Install the containers:
+
+`docker-compose up -d`
+
+* Open the container terminal:
+
+`docker exec -it trybesmith bash`
+
+* Install dependencies: 
 
 `npm install`
 
